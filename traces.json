@@ -29,7 +29,7 @@
       "version": 3
     }
   ],
-  "missed_outage/polling_only": [
+  "missed_outage/polling_60": [
     {
       "time": 100,
       "kind": "truth_changed",
@@ -53,6 +53,43 @@
     },
     {
       "time": 722,
+      "kind": "accepted",
+      "truth": "available",
+      "display": "available",
+      "version": 3
+    },
+    {
+      "time": 1800,
+      "kind": "end",
+      "truth": "available",
+      "display": "available",
+      "version": 3
+    }
+  ],
+  "missed_outage/polling_300": [
+    {
+      "time": 100,
+      "kind": "truth_changed",
+      "truth": "offline",
+      "display": "available",
+      "version": 1
+    },
+    {
+      "time": 302,
+      "kind": "accepted",
+      "truth": "offline",
+      "display": "offline",
+      "version": 2
+    },
+    {
+      "time": 700,
+      "kind": "truth_changed",
+      "truth": "available",
+      "display": "offline",
+      "version": 2
+    },
+    {
+      "time": 902,
       "kind": "accepted",
       "truth": "available",
       "display": "available",
@@ -140,7 +177,7 @@
       "version": 3
     }
   ],
-  "duplicate_outage/polling_only": [
+  "duplicate_outage/polling_60": [
     {
       "time": 100,
       "kind": "truth_changed",
@@ -164,6 +201,43 @@
     },
     {
       "time": 722,
+      "kind": "accepted",
+      "truth": "available",
+      "display": "available",
+      "version": 3
+    },
+    {
+      "time": 1800,
+      "kind": "end",
+      "truth": "available",
+      "display": "available",
+      "version": 3
+    }
+  ],
+  "duplicate_outage/polling_300": [
+    {
+      "time": 100,
+      "kind": "truth_changed",
+      "truth": "offline",
+      "display": "available",
+      "version": 1
+    },
+    {
+      "time": 302,
+      "kind": "accepted",
+      "truth": "offline",
+      "display": "offline",
+      "version": 2
+    },
+    {
+      "time": 700,
+      "kind": "truth_changed",
+      "truth": "available",
+      "display": "offline",
+      "version": 2
+    },
+    {
+      "time": 902,
       "kind": "accepted",
       "truth": "available",
       "display": "available",
@@ -251,7 +325,7 @@
       "version": 3
     }
   ],
-  "stale_observations/polling_only": [
+  "stale_observations/polling_60": [
     {
       "time": 100,
       "kind": "truth_changed",
@@ -275,6 +349,36 @@
     },
     {
       "time": 422,
+      "kind": "accepted",
+      "truth": "available",
+      "display": "available",
+      "version": 3
+    },
+    {
+      "time": 1800,
+      "kind": "end",
+      "truth": "available",
+      "display": "available",
+      "version": 3
+    }
+  ],
+  "stale_observations/polling_300": [
+    {
+      "time": 100,
+      "kind": "truth_changed",
+      "truth": "offline",
+      "display": "available",
+      "version": 1
+    },
+    {
+      "time": 200,
+      "kind": "truth_changed",
+      "truth": "available",
+      "display": "available",
+      "version": 1
+    },
+    {
+      "time": 302,
       "kind": "accepted",
       "truth": "available",
       "display": "available",
@@ -355,7 +459,7 @@
       "version": 2
     }
   ],
-  "missed_recovery/polling_only": [
+  "missed_recovery/polling_60": [
     {
       "time": 100,
       "kind": "truth_changed",
@@ -379,6 +483,43 @@
     },
     {
       "time": 422,
+      "kind": "accepted",
+      "truth": "available",
+      "display": "available",
+      "version": 3
+    },
+    {
+      "time": 1800,
+      "kind": "end",
+      "truth": "available",
+      "display": "available",
+      "version": 3
+    }
+  ],
+  "missed_recovery/polling_300": [
+    {
+      "time": 100,
+      "kind": "truth_changed",
+      "truth": "offline",
+      "display": "available",
+      "version": 1
+    },
+    {
+      "time": 302,
+      "kind": "accepted",
+      "truth": "offline",
+      "display": "offline",
+      "version": 2
+    },
+    {
+      "time": 400,
+      "kind": "truth_changed",
+      "truth": "available",
+      "display": "offline",
+      "version": 2
+    },
+    {
+      "time": 602,
       "kind": "accepted",
       "truth": "available",
       "display": "available",
@@ -466,7 +607,7 @@
       "version": 3
     }
   ],
-  "planned_maintenance/polling_only": [
+  "planned_maintenance/polling_60": [
     {
       "time": 100,
       "kind": "truth_changed",
@@ -490,6 +631,43 @@
     },
     {
       "time": 722,
+      "kind": "accepted",
+      "truth": "available",
+      "display": "available",
+      "version": 3
+    },
+    {
+      "time": 1800,
+      "kind": "end",
+      "truth": "available",
+      "display": "available",
+      "version": 3
+    }
+  ],
+  "planned_maintenance/polling_300": [
+    {
+      "time": 100,
+      "kind": "truth_changed",
+      "truth": "under_maintenance",
+      "display": "available",
+      "version": 1
+    },
+    {
+      "time": 302,
+      "kind": "accepted",
+      "truth": "under_maintenance",
+      "display": "under_maintenance",
+      "version": 2
+    },
+    {
+      "time": 700,
+      "kind": "truth_changed",
+      "truth": "available",
+      "display": "under_maintenance",
+      "version": 2
+    },
+    {
+      "time": 902,
       "kind": "accepted",
       "truth": "available",
       "display": "available",

@@ -1,36 +1,87 @@
 {
   "node": "v24.18.0",
-  "rows": 315,
+  "rows": 420,
   "summary": [
     {
       "design": "push_only",
       "runs": 100,
       "mean_requests": 0,
+      "std_requests": 0,
+      "p50_requests": 0,
       "mean_incorrectly_enabled_s": 383.57,
+      "std_incorrectly_enabled_s": 123.58,
+      "p50_incorrectly_enabled_s": 373,
       "mean_incorrectly_disabled_s": 460.73,
+      "std_incorrectly_disabled_s": 195.46,
+      "p50_incorrectly_disabled_s": 437,
       "mean_status_mismatch_s": 844.3,
       "mean_unobserved_transitions": 1.9,
       "final_correct_runs": 80
     },
     {
-      "design": "polling_only",
+      "design": "polling_60",
       "runs": 100,
       "mean_requests": 30,
+      "std_requests": 0,
+      "p50_requests": 30,
       "mean_incorrectly_enabled_s": 130,
+      "std_incorrectly_enabled_s": 0,
+      "p50_incorrectly_enabled_s": 130,
       "mean_incorrectly_disabled_s": 90,
+      "std_incorrectly_disabled_s": 0,
+      "p50_incorrectly_disabled_s": 90,
       "mean_status_mismatch_s": 220,
       "mean_unobserved_transitions": 0,
+      "final_correct_runs": 100
+    },
+    {
+      "design": "polling_300",
+      "runs": 100,
+      "mean_requests": 6,
+      "std_requests": 0,
+      "p50_requests": 6,
+      "mean_incorrectly_enabled_s": 700,
+      "std_incorrectly_enabled_s": 0,
+      "p50_incorrectly_enabled_s": 700,
+      "mean_incorrectly_disabled_s": 0,
+      "std_incorrectly_disabled_s": 0,
+      "p50_incorrectly_disabled_s": 0,
+      "mean_status_mismatch_s": 700,
+      "mean_unobserved_transitions": 5,
       "final_correct_runs": 100
     },
     {
       "design": "proposed",
       "runs": 100,
       "mean_requests": 11.48,
+      "std_requests": 2.04,
+      "p50_requests": 12,
       "mean_incorrectly_enabled_s": 461.63,
+      "std_incorrectly_enabled_s": 103.02,
+      "p50_incorrectly_enabled_s": 461,
       "mean_incorrectly_disabled_s": 139.44,
+      "std_incorrectly_disabled_s": 51.34,
+      "p50_incorrectly_disabled_s": 132,
       "mean_status_mismatch_s": 601.07,
       "mean_unobserved_transitions": 0.84,
       "final_correct_runs": 100
     }
-  ]
+  ],
+  "tradeoff": {
+    "claim": "Under lossy/delayed push delivery, proposed keeps final correctness at 100/100 like polling while using fewer requests than polling_60; incorrectly-enabled time is worse than continuous polling and can exceed push-only because reconciliation delay dominates missed outages.",
+    "vs_polling_60": {
+      "request_ratio": 0.383,
+      "incorrectly_enabled_ratio": 3.551,
+      "incorrectly_disabled_ratio": 1.549
+    },
+    "vs_polling_300": {
+      "request_ratio": 1.913,
+      "incorrectly_enabled_ratio": 0.659,
+      "incorrectly_disabled_ratio": null
+    },
+    "vs_push_only": {
+      "final_correct_delta": 20,
+      "incorrectly_disabled_ratio": 0.303
+    }
+  }
 }
