@@ -1,0 +1,11 @@
+{
+  "name": "portal-coordination-comparison",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node run.mjs"
+  },
+  "engines": {
+    "node": ">=24"
+  }
+}
