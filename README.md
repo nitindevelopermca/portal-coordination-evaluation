@@ -1,6 +1,10 @@
-# Portal coordination simulation
+# Portal coordination evaluation
 
-Run from this directory with Node.js 24 (no dependencies):
+Public companion artifacts for the SOCA manuscript *A Version-Aware Coordination Model for Metadata-Driven Enterprise Portals*.
+
+## Comparative simulation
+
+Run from this directory with Node.js 24 (no dependencies; validated with Node.js v24.18.0):
 
 ```sh
 node run.mjs
@@ -8,9 +12,18 @@ node run.mjs
 
 The command executes 15 directed comparisons and 300 paired seeded comparisons, checks directed timing oracles and duplicate-message controls, and writes results.csv, summary.json, traces.json. Output files are deterministic for the same source and Node version; summary.json records the runtime. Virtual seconds do not measure CPU runtime or browser latency.
 
+## Bounded state model checker
+
+```sh
+cd portal-state-model
+node model-check.mjs
+```
+
+See `portal-state-model/README.md` for domains, safety properties, and mutation checks.
+
 # Experimental design and interpretation
 
-A discrete-event JavaScript simulator was executed under Node.js v24.19.0. It compares push only, polling only every 60 seconds, and the proposed push/conditional-verification design with 300-second catalog reconciliation. All designs share monotonic version acceptance and non-overlapping requests; the baselines are not deliberately deprived of stale-update safeguards. The experiment models one authorized application over 1,800 virtual seconds. Initial state is synchronized AVAILABLE; initial-load requests are excluded. Healthy requests return the status captured at request start after two seconds. Verification waits 60 seconds after completion. A request started at the horizon is counted even when its response falls outside observation.
+A discrete-event JavaScript simulator was executed under Node.js v24.18.0. It compares push only, polling only every 60 seconds, and the proposed push/conditional-verification design with 300-second catalog reconciliation. All designs share monotonic version acceptance and non-overlapping requests; the baselines are not deliberately deprived of stale-update safeguards. The experiment models one authorized application over 1,800 virtual seconds. Initial state is synchronized AVAILABLE; initial-load requests are excluded. Healthy requests return the status captured at request start after two seconds. Verification waits 60 seconds after completion. A request started at the horizon is counted even when its response falls outside observation.
 
 Five directed traces cover missed outage, duplicate outage, delayed observations, missed recovery, and planned maintenance. For an outage at second 100 whose push is lost, incorrectly enabled duration is 600 seconds for push only, 22 for polling only, and 202 for the proposal; the latter waits for its first catalog reconciliation. For recovery at second 400 whose push is lost, incorrectly disabled duration is 1,400, 22, and 11 seconds respectively. Duplicate outage messages do not increase proposed request counts relative to a single-message control. Delayed lower-version pushes are rejected; a polling response can still temporarily reflect an old authoritative state before a newer version has been learned. Planned maintenance triggers zero proposed per-application verification requests, while six catalog requests remain.
 

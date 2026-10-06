@@ -1,0 +1,192 @@
+{
+  "model": "single-application portal coordination abstraction",
+  "runtime": "v24.18.0",
+  "max_depth": 6,
+  "generated_at": "2026-10-06T19:03:54.204Z",
+  "scope": "Bounded safety exploration with state deduplication, not all path enumeration, formal proof, implementation validation, performance benchmarking, or liveness proof.",
+  "runs": [
+    {
+      "variant": "correct",
+      "max_depth": 6,
+      "event_alphabet_size": 100,
+      "unique_states": 1465,
+      "expanded_states": 971,
+      "examined_transitions": 97100,
+      "passed": true,
+      "violation": null
+    },
+    {
+      "variant": "no_version_guard",
+      "max_depth": 6,
+      "unique_states": 2,
+      "expanded_states": 1,
+      "examined_transitions": 3,
+      "passed": false,
+      "violation": "I4b: stale or equal-version push changed status",
+      "counterexample": [
+        {
+          "type": "push",
+          "inc": "A",
+          "v": 1,
+          "status": "maintenance"
+        }
+      ]
+    },
+    {
+      "variant": "duplicate_timers",
+      "max_depth": 6,
+      "unique_states": 54,
+      "expanded_states": 4,
+      "examined_transitions": 313,
+      "passed": false,
+      "violation": "I1: more than one verification timer",
+      "counterexample": [
+        {
+          "type": "push",
+          "inc": "A",
+          "v": 2,
+          "status": "offline"
+        },
+        {
+          "type": "push",
+          "inc": "A",
+          "v": 2,
+          "status": "offline"
+        }
+      ]
+    },
+    {
+      "variant": "recreate_removed",
+      "max_depth": 6,
+      "unique_states": 62,
+      "expanded_states": 10,
+      "examined_transitions": 901,
+      "passed": false,
+      "violation": "I5: push recreated absent application",
+      "counterexample": [
+        {
+          "type": "snapshot",
+          "rev": 2,
+          "present": false
+        },
+        {
+          "type": "push",
+          "inc": "A",
+          "v": 1,
+          "status": "available"
+        }
+      ]
+    },
+    {
+      "variant": "no_generation_guard",
+      "max_depth": 6,
+      "unique_states": 429,
+      "expanded_states": 227,
+      "examined_transitions": 22642,
+      "passed": false,
+      "violation": "I6: obsolete verification generation changed status",
+      "counterexample": [
+        {
+          "type": "snapshot",
+          "rev": 2,
+          "present": true,
+          "inc": "B",
+          "v": 1,
+          "status": "offline"
+        },
+        {
+          "type": "beginVerification"
+        },
+        {
+          "type": "push",
+          "inc": "B",
+          "v": 2,
+          "status": "available"
+        },
+        {
+          "type": "response",
+          "inc": "B",
+          "v": 3,
+          "status": "available"
+        }
+      ]
+    }
+  ],
+  "scenarios": [
+    {
+      "name": "lost outage repaired by snapshot",
+      "passed": true,
+      "final_state": {
+        "epoch": 0,
+        "rev": 2,
+        "present": true,
+        "inc": "A",
+        "v": 2,
+        "status": "offline",
+        "gen": 0,
+        "timers": 1,
+        "pending": null
+      }
+    },
+    {
+      "name": "maintenance invalidates pending response",
+      "passed": true,
+      "final_state": {
+        "epoch": 0,
+        "rev": 1,
+        "present": true,
+        "inc": "A",
+        "v": 3,
+        "status": "maintenance",
+        "gen": 1,
+        "timers": 0,
+        "pending": null
+      }
+    },
+    {
+      "name": "new incarnation rejects old push",
+      "passed": true,
+      "final_state": {
+        "epoch": 0,
+        "rev": 2,
+        "present": true,
+        "inc": "B",
+        "v": 1,
+        "status": "available",
+        "gen": 1,
+        "timers": 0,
+        "pending": null
+      }
+    },
+    {
+      "name": "recovery stops verification",
+      "passed": true,
+      "final_state": {
+        "epoch": 0,
+        "rev": 1,
+        "present": true,
+        "inc": "A",
+        "v": 3,
+        "status": "available",
+        "gen": 1,
+        "timers": 0,
+        "pending": null
+      }
+    },
+    {
+      "name": "context change rejects old verification",
+      "passed": true,
+      "final_state": {
+        "epoch": 1,
+        "rev": 0,
+        "present": false,
+        "inc": "A",
+        "v": 2,
+        "status": "absent",
+        "gen": 1,
+        "timers": 0,
+        "pending": null
+      }
+    }
+  ]
+}
